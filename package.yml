@@ -1,0 +1,25 @@
+name       : python-backports.unittest_mock
+version    : 1.3
+release    : 1
+source     :
+    - https://files.pythonhosted.org/packages/source/b/backports.unittest_mock/backports.unittest_mock-1.3.tar.gz : c6d964d75112051576daa60746cc6a66afcdc43f13ea2bda175ca8e278e9b375
+license    : MIT
+component  : programming.python
+summary    : Backport of unittest mock for python 3.2 and earlier
+description: |
+    Provides a function "install()" which makes the "mock" module available
+    as "unittest.mock" on Python 3.2 and earlier.
+    Also advertises a pytest plugin which configures unittest.mock automatically.
+builddeps  :
+    - python-mock
+    - python-setuptools
+    - python-setuptools-scm
+    - python-pytest
+build      : |
+    %python_setup
+install    : |
+    %python_install
+check      : |
+    pushd $PKG_BUILD_DIR/py2build
+        PYTHONPATH=$PWD py.test
+    popd
